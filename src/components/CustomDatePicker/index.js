@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/native'
 import type { Element } from 'react'
 import {
-  Modal, Text, Pressable, TouchableHighlight, View
+  Modal, Text, Pressable, TouchableHighlight, View, Platform
 } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker'
 import moment from "moment"
@@ -85,7 +85,7 @@ const CustomDatePicker = (props: Props) : Element<any> => {
             >
               <View style={{marginTop: 20, marginBottom: 20, backgroundColor: 'white'}}>
                 <DateTimePicker
-                  display='default'
+                  display={Platform.OS === 'ios' ? "spinner" : "default"}
                   mode={props.type}
                   value={date}
                   onChange={onChangeDate}

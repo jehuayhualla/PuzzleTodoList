@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/native'
 import type { Element } from 'react'
 import {
-  Modal, Text, Pressable, TouchableHighlight, View
+  Modal, Text, Pressable, TouchableHighlight, View, Platform
 } from "react-native";
 import {Picker} from '@react-native-picker/picker';
 
@@ -33,7 +33,9 @@ const StyledInput = styled.TouchableOpacity`
   align-items: flex-start;
   justify-content: center;
 `
-
+const StyledPicker = styled(Picker)`
+  height: ${Platform.OS === 'ios' ? "auto": "65px"} ;
+`
 type Props = {
   title: string,
   onChange: (any) => void,
@@ -81,15 +83,15 @@ const CustomSelect = (props: Props) : Element<any> => {
                 style={{backgroundColor: "#FFFFFF", overflow: 'hidden', borderTopLeftRadius: 25, borderTopRightRadius: 25}}
             >
               <View style={{marginTop: 20, marginBottom: 20, backgroundColor: 'white'}}>
-              <Picker
+              <StyledPicker
                 selectedValue={selectedOption}
                 onValueChange={onChangePicker}
-                style={{ height: 65 }}
+                //style={{ height: 65 }}
               >
                 {
                   props.items.map( (o,i) =>  <Picker.Item key={i} label={o.label} value={o.value} />)
                 }
-              </Picker>
+              </StyledPicker>
               </View>
             </View>
           </TouchableHighlight>
