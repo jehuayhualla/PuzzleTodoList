@@ -1,7 +1,7 @@
 // @flow
 import React from 'react'
 import styled from 'styled-components/native';
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity, Platform } from 'react-native'
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import type { Element } from 'react'
@@ -9,7 +9,7 @@ import type { Element } from 'react'
 const ContainerHeader = styled.View`
   flex-grow: 1;
   flex-direction: row;
-  padding-horizontal: 16px;
+  padding-horizontal: ${Platform.OS === 'ios' ? "16px" : "0px"} ;
 `
 const ContainerText = styled.View`
   flex-grow: 1;

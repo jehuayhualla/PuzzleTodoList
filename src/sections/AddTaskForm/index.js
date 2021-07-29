@@ -44,7 +44,7 @@ const AddTaskForm = (props: Props) : Element<any> => {
     }
 
     const handleChange = (e) => {
-      console.log(e)
+      //console.log(e)
     }
 
     const handleButtonPress = () => {

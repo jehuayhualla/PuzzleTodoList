@@ -1,11 +1,10 @@
 import React, { useLayoutEffect } from 'react';
 import {
   View,
-  SafeAreaView,
-  StyleSheet,
-  useWindowDimensions
+  Platform
 } from "react-native";
 import { useNavigation } from '@react-navigation/native'
+import styled from 'styled-components/native';
 
 import CustomHeader from '../components/CustomHeader';
 import AddTaskForm from '../sections/AddTaskForm';
@@ -28,28 +27,27 @@ const AddTaskScreen = ({ todo_list, addTodo, deleteTodo }): Element<any> => {
           <CustomHeader canBack={true} showIcons={false} title="Add task" onPress={HandleGoBackPress} />
         ),
         headerTitleContainerStyle: {
-          width: '100%',
+          width: Platform.OS === 'ios' ? "100%" : null,
         },
         headerStyle: {
-          height: 100,
+          height: Platform.OS === 'ios' ? 100 : 60,
         },
         headerLeft: null,
       })
     }, [navigation])
 
     return (
-      <SafeAreaView style={[styles.container]}>
+      <StyledSafeAreaView>
           <AddTaskForm onAdd={addTodo} />
-      </SafeAreaView>
+      </StyledSafeAreaView>
     )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white'
-  },
-});
+const StyledSafeAreaView = styled.SafeAreaView`
+  display: flex;
+  flex-grow: 1;
+  background-color: white;
+`
 
 const mapStateToProps = (state, ownProps) => {
   return {

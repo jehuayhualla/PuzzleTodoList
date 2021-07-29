@@ -68,7 +68,7 @@ const CustomSelect = (props: Props) : Element<any> => {
           onRequestClose={() => setShow(false)}
         > 
         <Pressable
-            style={{flex: 1, alignItems: 'flex-end', flexDirection: 'row'}}
+            style={{flex: 1, alignItems: 'center', flexDirection: 'row'}}
             activeOpacity={1}
             visible={show}
             onPress={() => setShow(false)}
@@ -84,6 +84,7 @@ const CustomSelect = (props: Props) : Element<any> => {
               <Picker
                 selectedValue={selectedOption}
                 onValueChange={onChangePicker}
+                style={{ height: 65 }}
               >
                 {
                   props.items.map( (o,i) =>  <Picker.Item key={i} label={o.label} value={o.value} />)

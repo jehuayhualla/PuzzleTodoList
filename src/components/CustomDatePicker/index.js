@@ -45,9 +45,11 @@ const CustomDatePicker = (props: Props) : Element<any> => {
   const [pickedDate, setPickedDate] = useState(null);
   const [show, setShow] = useState(false);
   const onChangeDate = (event, selectedDate) => {
-    props.onChange(selectedDate)
-    setPickedDate(selectedDate)
+    setShow(false)
     setDate(selectedDate)
+    console.log(selectedDate)
+    setPickedDate(selectedDate)
+    props.onChange(selectedDate)
   }
   
   return (
@@ -66,13 +68,13 @@ const CustomDatePicker = (props: Props) : Element<any> => {
           animationType='slide'
           visible={show}
           supportedOrientations={['portrait']}
-          onRequestClose={() => setShow(false)}
+          onRequestClose={() => setShow(true)}
         > 
         <Pressable
             style={{flex: 1, alignItems: 'flex-end', flexDirection: 'row'}}
             activeOpacity={1}
             visible={show}
-            onPress={() => setShow(false)}
+            //onPress={() => setShow(false)}
         >
           <TouchableHighlight
             underlayColor='transparent'
@@ -83,7 +85,7 @@ const CustomDatePicker = (props: Props) : Element<any> => {
             >
               <View style={{marginTop: 20, marginBottom: 20, backgroundColor: 'white'}}>
                 <DateTimePicker
-                  display='spinner'
+                  display='default'
                   mode={props.type}
                   value={date}
                   onChange={onChangeDate}

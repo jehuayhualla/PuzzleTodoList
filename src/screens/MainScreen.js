@@ -1,12 +1,11 @@
 import React, { useLayoutEffect } from 'react';
 import {
   View,
-  SafeAreaView,
-  StyleSheet,
-  useWindowDimensions
+  Platform
 } from "react-native";
 import { TabView, SceneMap } from 'react-native-tab-view';
 import { useNavigation } from '@react-navigation/native'
+import styled from 'styled-components/native';
 
 import TabHeader from '../components/TabHeader'
 import CustomHeader from '../components/CustomHeader';
@@ -61,10 +60,10 @@ const MainScreen = ({ todo_list, changeTask}): Element<any> => {
           <CustomHeader canBack={false} showIcons={true} title="Board"/>
         ),
         headerTitleContainerStyle: {
-          width: '100%',
+          width: Platform.OS === 'ios' ? "100%" : null,
         },
         headerStyle: {
-          height: 100,
+          height: Platform.OS === 'ios' ? 100 : 60,
         },
         headerLeft: null,
       })
@@ -75,7 +74,7 @@ const MainScreen = ({ todo_list, changeTask}): Element<any> => {
     }
 
     return (
-      <SafeAreaView style={[styles.container]}>
+      <StyledSafeAreaView>
         <TabView
             renderTabBar={TabHeader}
             navigationState={{ index, routes }}
@@ -83,16 +82,15 @@ const MainScreen = ({ todo_list, changeTask}): Element<any> => {
             onIndexChange={setIndex}
         />
         <CustomButton title="Create a task" color="#fff" bgColor="#5eba7d" onPress={handleButtonPress} />
-      </SafeAreaView>
+      </StyledSafeAreaView>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: 'white'
-    },
-});
+const StyledSafeAreaView = styled.SafeAreaView`
+  display: flex;
+  flex-grow: 1;
+  background-color: white;
+`
 
 const mapStateToProps = (state, ownProps) => {
   return {

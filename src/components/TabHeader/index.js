@@ -2,7 +2,7 @@
 import React from 'react'
 import { css } from 'styled-components';
 import styled from 'styled-components/native';
-import { StyleSheet, Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import { get } from 'lodash'
 import { TabBar, Route, SceneRendererProps } from 'react-native-tab-view'
 import type { Element } from 'react'
